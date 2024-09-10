@@ -5,7 +5,9 @@ RUN addgroup -S spring && adduser -S spring -G spring
 
 USER spring:spring
 
-ARG JAR_FILE=target/*.jar
+VOLUME /data
+
+ARG JAR_FILE=target/spend-sage-0.0.1-SNAPSHOT.jar
 
 # Retrive needed files and dependencies
 COPY ${JAR_FILE} app.jar
