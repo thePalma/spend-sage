@@ -1,0 +1,23 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/spend_sage
+      - SPRING_DATASOURCE_USERNAME=spend_sage
+      - SPRING_DATASOURCE_PASSWORD=spend_sage
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: spend_sage
+      POSTGRES_PASSWORD: spend_sage
+      POSTGRES_DB: spend_sage
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
