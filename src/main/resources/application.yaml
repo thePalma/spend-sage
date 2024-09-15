@@ -11,3 +11,8 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  mvc:
+    format:
+      date: dd-MM-yyyy
+      time: HH:mm:ss
+      date-time: dd-MM-yyyy HH:mm:ss
