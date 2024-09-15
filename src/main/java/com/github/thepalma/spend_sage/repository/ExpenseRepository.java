@@ -23,4 +23,10 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
 
     Optional<Expense> findFirstByOrderByDateDesc();
 
+    @Query("SELECT MIN(e.amount) FROM Expense e")
+    Optional<Double> findMinExpense();
+
+    @Query("SELECT MAX(e.amount) FROM Expense e")
+    Optional<Double> findMaxExpense();
+
 }

@@ -51,6 +51,11 @@ public class StatsServiceImpl implements StatsService {
         Optional<Income> latestIncome = incomeRepository.findFirstByOrderByDateDesc();
         Optional<Expense> latestExpense = expenseRepository.findFirstByOrderByDateDesc();
 
+        Optional<Double> minIncome = incomeRepository.findMinIncome();
+        Optional<Double> maxIncome = incomeRepository.findMaxIncome();
+        Optional<Double> minExpense = expenseRepository.findMinExpense();
+        Optional<Double> maxExpense = expenseRepository.findMaxExpense();
+
         StatsDTO statsDTO = new StatsDTO();
         statsDTO.setTotalIncome(totalIncome);
         statsDTO.setTotalExpense(totalExpense);
@@ -58,6 +63,11 @@ public class StatsServiceImpl implements StatsService {
         statsDTO.setMonthlyExpense(monthlyExpense);
         latestIncome.ifPresent(statsDTO::setLatestIncome);
         latestExpense.ifPresent(statsDTO::setLatestExpense);
+        statsDTO.setBalance(totalIncome - totalExpense);
+        minIncome.ifPresent(statsDTO::setMinIncome);
+        maxIncome.ifPresent(statsDTO::setMaxIncome);
+        minExpense.ifPresent(statsDTO::setMinExpense);
+        maxExpense.ifPresent(statsDTO::setMaxExpense);
 
         return statsDTO;
     }

@@ -22,4 +22,10 @@ public interface IncomeRepository extends JpaRepository<Income, Long> {
     Double sumAllMonthlyAmounts(LocalDate startDate, LocalDate endDate);
 
     Optional<Income> findFirstByOrderByDateDesc();
+
+    @Query("SELECT MIN(i.amount) FROM Income i")
+    Optional<Double> findMinIncome();
+
+    @Query("SELECT MAX(i.amount) FROM Income i")
+    Optional<Double> findMaxIncome();
 }
