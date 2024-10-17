@@ -11,6 +11,7 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/spend_sage
       - SPRING_DATASOURCE_USERNAME=spend_sage
       - SPRING_DATASOURCE_PASSWORD=spend_sage
+      - SERVER_SERVLET_CONTEXT_PATH=/spend-sage
   db:
     image: postgres:latest
     environment:
